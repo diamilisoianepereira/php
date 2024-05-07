@@ -1,0 +1,9 @@
+body{
+    background-color: rgb(113, 100, 233);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+p{
+    color: rgb(226, 54, 175);
+    background-color: black;
+}
