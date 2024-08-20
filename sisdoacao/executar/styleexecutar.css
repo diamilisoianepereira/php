@@ -1,0 +1,184 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+.titulo {
+  border-bottom: none;
+  margin-bottom: 15px;
+}
+
+h3 {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.form-group label {
+  float: left;
+  width: 30%;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.form-group input,
+.form-group select {
+  float: left;
+  width: 65%;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.form-group textarea {
+  width: 65%;
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+.form-group.checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.form-group.checkbox label {
+  float: none;
+  width: auto;
+  text-align: left;
+  margin-right: 0;
+}
+
+.form-group.checkbox input {
+  margin-right: 10px;
+}
+
+.button {
+  background: linear-gradient(to right, #00dbde, #fc00ff);
+  background-size: 200% 100%;
+  width: 100%;
+  color: #fff;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-position 0.5s ease;
+}
+
+.button:hover {
+  background-position: 100% 50%;
+  animation: gradient-animation 5s ease forwards;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes gradient-animation-reverse {
+  0% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.button:not(:hover) {
+  animation: gradient-animation-reverse 1s ease forwards;
+}
+
+.container_formulario {
+  border: #fff solid 3px;
+  padding: 20px;
+  width: 50%;
+ 
+}
+
+aside {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.container {
+  width: 100%;
+}
+
+.voltar {
+  display: flex;
+  width: 90%;
+  margin-bottom: 30px;
+  margin-top: 15px;
+}
+
+.voltarlistadoadores {
+  background-color: blue;
+  padding: 10px;
+  border-radius: 30px;
+  margin-left: 10px;
+  text-decoration: none;
+  color: white;
+  transition: background-color 0.3s;
+}
+.voltarlistadoacoes {
+  background-color: green;
+  padding: 10px;
+  border-radius: 30px;
+  margin-left: 10px;
+  text-decoration: none;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.voltarinicial {
+  background-color: rgb(255, 0, 0);
+  padding: 10px;
+  border-radius: 30px;
+  margin-left: 10px;
+  text-decoration: none;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+i {
+  margin-right: 5px;
+}
+
+.voltarinicial:hover {
+  background-color: #aa69ff;
+}
+
+.voltarlistadoadores:hover {
+  background-color: #aa69ff;
+}
+
+.voltarlistadoacoes:hover {
+  background-color: #aa69ff;
+}

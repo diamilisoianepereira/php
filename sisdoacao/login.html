@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Login - Sisaluno</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background-color: #f1f1f1;
+            position: relative;
+            z-index: 1000;
+        }
+
+        .logo {
+            width: 100px;
+        }
+
+        .menu-icon {
+            display: inline-block;
+            cursor: pointer;
+            padding: 16px;
+        }
+
+        .menu-icon div {
+            width: 35px;
+            height: 4px;
+            background-color: black;
+            margin: 6px 0;
+            transition: 0.4s;
+        }
+
+        .change .bar1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .change .bar2 {
+            opacity: 0;
+        }
+
+        .change .bar3 {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        .menu {
+            display: none;
+            padding: 16px;
+            background-color: #f1f1f1;
+            position: absolute;
+            top: 90px;
+            right: 16px;
+            width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 2000;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: black;
+            padding: 12px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .menu a:hover, .menu a.active {
+            background-color: #ddd;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1500;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            margin: 50px auto;
+            position: relative;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 24px;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 12px;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #333;
+        }
+
+        .eye-icon {
+            position: absolute;
+            right: 10px;
+            bottom: 12px;
+            cursor: pointer;
+            font-size: 20px;
+            color: #888;
+        }
+
+        .eye-icon:hover {
+            color: black;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .back-link a {
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        .spaced-group {
+            margin-bottom: 30px; /* Espaçamento extra entre os campos de usuário e senha */
+        }
+
+        footer {
+            background-color: #000;
+            padding: 16px;
+            text-align: center;
+            color: #fff;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html">
+            <img src="logo.png" alt="logo" class="logo">
+        </a>
+        <div class="menu-icon" onclick="toggleMenu(this)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+    </header>
+
+    <div class="menu" id="menu">
+        <a href="#quemsomos" onclick="showContent('quemsomos'); setActive(this)">Quem Somos</a>
+        <a href="#comofunciona" onclick="showContent('comofunciona'); setActive(this)">Como Funciona</a>
+        <a href="#sobre" onclick="showContent('sobre'); setActive(this)">Sobre o Site</a>
+        <a href="#desenvolvimento" onclick="showContent('desenvolvimento'); setActive(this)">Desenvolvimento</a>
+        <a href="login.html" onclick="setActive(this)">Entrar como Administrador</a>
+    </div>
+
+    <div id="overlay" class="overlay"></div>
+
+    <div class="login-container">
+        <h2>Login como Administrador</h2>
+        <form id="loginForm" action="admin-dashboard.html" method="post" onsubmit="return showConfirmMessage()">
+            <div class="form-group spaced-group">
+                <label for="username">Usuário:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" required>
+                <i class="fa fa-eye eye-icon" id="togglePassword" onclick="togglePassword()"></i>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Entrar">
+            </div>
+        </form>
+        <div class="back-link">
+            <a href="index.php">Voltar para a página inicial</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 HILÁRIA SARAIVA PEREIRA & DIAMILI SOIANE PEREIRA DA SILVA. TODOS OS DIREITOS RESERVADOS.</p>
+    </footer>
+
+    <script>
+        function toggleMenu(x) {
+            x.classList.toggle("change");
+            var menu = document.getElementById("menu");
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            } else {
+                menu.style.display = "block";
+            }
+        }
+
+        function showContent(id) {
+            var contents = document.querySelectorAll('.content');
+            contents.forEach(content => content.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.getElementById("overlay").classList.add("active");
+        }
+
+        function closeContent(id) {
+            document.getElementById(id).classList.remove('active');
+            document.getElementById("overlay").classList.remove("active");
+        }
+
+        function setActive(element) {
+            var links = document.querySelectorAll('.menu a');
+            links.forEach(link => link.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        function togglePassword() {
+            var passwordInput = document.getElementById('password');
+            var eyeIcon = document.getElementById('togglePassword');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+
+        function showConfirmMessage() {
+            if (confirm("Login realizado com sucesso!")) {
+                return true; // Prossegue com o envio do formulário
+            } else {
+                return false; // Cancela o envio do formulário
+            }
+        }
+    </script>
+</body>
+</html>
